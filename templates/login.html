@@ -13,7 +13,7 @@
             {% endif %}
         {% endwith %}
         <form method="POST">
-            {{ form.hidden_tag() }}
+            {{ form.hidden_tag() }}  <!-- CSRF token is included here -->
             <div class="form-group">
                 {{ form.username.label }}
                 {{ form.username(class="form-control") }}

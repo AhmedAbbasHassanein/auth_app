@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_wtf import FlaskForm
 from models import User, db
 from forms import RegisterForm, LoginForm
 
@@ -91,6 +92,12 @@ def register_routes(app):
             flash('You do not have permission to access this page.', 'danger')
             return redirect(url_for('dashboard'))
 
+        # Create a dummy form for CSRF protection
+        class DummyForm(FlaskForm):
+            pass
+
+        form = DummyForm()
+
         # Get all users
         all_users = User.query.all()
 
@@ -119,7 +126,7 @@ def register_routes(app):
 
             return redirect(url_for('admin'))
 
-        return render_template('admin.html', all_users=all_users)
+        return render_template('admin.html', all_users=all_users, form=form)
 
     @app.route('/dashboard')
     @login_required

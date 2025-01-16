@@ -40,6 +40,7 @@
                         </td>
                         <td>
                             <form method="POST" style="display: inline;">
+                                {{ form.hidden_tag() }}  <!-- CSRF token is included here -->
                                 <input type="hidden" name="user_id" value="{{ user.id }}">
                                 {% if not user.is_approved %}
                                     <button type="submit" name="action" value="approve" class="btn btn-success btn-sm">Approve</button>

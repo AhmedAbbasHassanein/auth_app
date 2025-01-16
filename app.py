@@ -12,8 +12,8 @@ app.config['SECRET_KEY'] = 'your_secret_key_here'  # Set a secure secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'  # SQLite database
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Disable CSRF protection (for testing purposes only)
-app.config['WTF_CSRF_ENABLED'] = False
+# Enable CSRF protection (default is True, so this line is optional)
+app.config['WTF_CSRF_ENABLED'] = True
 
 # Initialize extensions
 db.init_app(app)
